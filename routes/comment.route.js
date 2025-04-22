@@ -7,6 +7,8 @@ router.post("/", commentCtrl.createComment);
 
 router.get("/photos/:photoId", commentCtrl.getCommentsForPhoto);
 
+router.put("/:commentId", commentCtrl.editComment);
+
 router.delete("/:commentId", commentCtrl.deleteComment);
 
 module.exports = router;
