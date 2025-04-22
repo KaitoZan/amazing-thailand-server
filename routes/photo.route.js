@@ -1,3 +1,4 @@
+// routes/photo.route.js
 const photoCtrl = require("./../controllers/photo.controller.js");
 const express = require("express");
 const router = express.Router();

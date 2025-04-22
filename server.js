@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -15,15 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/images/users', express.static(path.join(__dirname, 'images/users')));
 app.use('/images/photos', express.static(path.join(__dirname, 'images/photos')));
 
-// Import routers
+
 const userRouter = require('./routes/user.route');
 const photoRoute = require('./routes/photo.route');
 const commentRoute = require('./routes/comment.route');
 
-// Use routers - Mount routers at specific base paths
-app.use('/api/users', userRouter);     // กำหนดให้ API เกี่ยวกับผู้ใช้งาน อยู่ภายใต้ /api/users
-app.use('/api/photos', photoRoute);   // กำหนดให้ API เกี่ยวกับรูปภาพ อยู่ภายใต้ /api/photos
-app.use('/api/comments', commentRoute); // กำหนดให้ API เกี่ยวกับความคิดเห็น อยู่ภายใต้ /api/comments
+
+app.use('/api/users', userRouter);     
+app.use('/api/photos', photoRoute);   
+app.use('/api/comments', commentRoute); 
 
 
 app.get("/", (req, res) => {
