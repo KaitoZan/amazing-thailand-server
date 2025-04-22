@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  user_id           Int @id @default(autoincrement())
+  username          String @unique
+  email             String @unique
+  password_hash     String
+  profile_picture_url String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  photos            photos[]
+  comments          comments[]
+
+  @@map("users")
+}
+
+model locations {
+  location_id Int @id @default(autoincrement())
+  name        String @unique
+  latitude    Decimal? @db.Decimal(10, 8)
+  longitude   Decimal? @db.Decimal(11, 8)
+  description String? @db.Text
+
+  @@map("locations")
+}
+
+model photos {
+  photo_id      Int @id @default(autoincrement())
+  user_id       Int
+  location_name String
+  image_url     String
+  description   String? @db.Text
+
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  user          users @relation(fields: [user_id], references: [user_id])
+
+  comments      comments[]
+
+  @@map("photos")
+}
+
+model comments {
+  comment_id    Int @id @default(autoincrement())
+  photo_id      Int
+  user_id       Int
+  comment_text  String @db.Text
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  photo         photos @relation(fields: [photo_id], references: [photo_id])
+  user          users @relation(fields: [user_id], references: [user_id])
+
+  @@map("comments")
+}
