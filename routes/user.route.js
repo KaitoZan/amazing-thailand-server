@@ -9,4 +9,6 @@ router.post("/login", userCtrl.checkLogin);
 
 router.put("/:userId", userCtrl.uploadUser, userCtrl.editUser);
 
+router.get("/:userId", userController.getUserById)
+
 module.exports = router;
