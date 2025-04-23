@@ -436,6 +436,3 @@ exports.deletePhoto = async (req, res) => {
         res.status(500).json({ message: "Failed to delete photo", error: process.env.NODE_ENV === 'development' ? error.message : 'An internal server error occurred.' });
     }
 };
-
-
-module.exports = {}
