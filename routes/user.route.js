@@ -9,6 +9,5 @@ router.post("/login", userCtrl.checkLogin);
 
 router.put("/:userId", userCtrl.uploadUser, userCtrl.editUser);
 
-router.get("/:userId", userController.getUserById)
-
+router.get("/:userId", userCtrl.getUserById);
 module.exports = router;
